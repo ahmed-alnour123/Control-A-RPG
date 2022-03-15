@@ -1,0 +1,33 @@
+General:
+    ☐ improve ScriptableObjects
+Systems:
+    improve all systems
+    Looting:
+        ✔ base system @done(22-03-15 16:18)
+    Interaction:
+        ✔ base system @done(22-03-15 16:18)
+    Inventory:
+        ✔ base system @done(22-03-15 16:18)
+
+Player:
+    Movement:
+        ✔ fix speedup when jumping near edge @done(22-03-15 16:19)
+        
+Data Representation:
+    LootObjectData:
+        ☐ icon/modelPrefab
+        ☐ UI
+    CollectableObjects:
+
+Done:
+    ✔ fix player movement with camera rotation @done(22-03-15 11:26)
+    ✔ fix push to wall issue @done(22-03-15 09:22)
+    ✔ add jump animation @done(22-03-15 10:54)
+
+
+
+Interaction:
+    foreach interactable add a trigger and callback function
+    callback function should be uniqe to every type
+    add type
+    
