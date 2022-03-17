@@ -3,27 +3,36 @@ using UnityEngine.Events;
 
 public class InteractionEventRegisterer : MonoBehaviour {
 
-    public UnityEvent Event;
+    [SerializeField]
+    private UnityEvent Event;
+
+    public InteractableType interactableType;
+    [HideInInspector]
+    public float startTime;
+
+    private InteractionEventManager eventManager;
+
     private void InvokeEvent() {
         Event?.Invoke();
     }
 
     private void Start() {
         // check for errors
+        eventManager = InteractionEventManager.instance;
+
         Event.AddListener(GetComponent<IInteractable>().OnPlayerInteraction);
     }
 
-    public InteractableType interactableType;
-
     private void OnTriggerEnter(Collider other) {
         if (other.CompareTag("Player")) {
-            InteractionEventManager.instance.AddEvent(InvokeEvent);
+            startTime = Time.time;
+            eventManager.AddEvent(InvokeEvent, interactableType);
         }
     }
 
     private void OnTriggerExit(Collider other) {
         if (other.CompareTag("Player")) {
-            InteractionEventManager.instance.RemoveEvent(InvokeEvent);
+            eventManager.RemoveEvent(InvokeEvent, interactableType);
         }
     }
 }

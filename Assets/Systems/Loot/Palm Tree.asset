@@ -13,12 +13,7 @@ MonoBehaviour:
   m_Name: Palm Tree
   m_EditorClassIdentifier: 
   name: PalmTree
-  itemType: 0
   animationId: 1
   timeToLoot: 2
   regenratable: 0
-  collectables:
-  - item: {fileID: 11400000, guid: cf0835a94563c3c2a829c2bf3145bca7, type: 2}
-    count: 3
-  - item: {fileID: 11400000, guid: 7e6f264e908be171c9655221f4dbc516, type: 2}
-    count: 1
+  model: {fileID: 9173564148454636821, guid: f1aad4e8da5188331a7c1367f8a5a80d, type: 3}

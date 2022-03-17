@@ -1,33 +1,34 @@
 General:
     ☐ improve ScriptableObjects
+UI:
+    ☐ create UI template
 Systems:
-    improve all systems
-    Looting:
-        ✔ base system @done(22-03-15 16:18)
-    Interaction:
-        ✔ base system @done(22-03-15 16:18)
+    ☐ improve all systems
     Inventory:
-        ✔ base system @done(22-03-15 16:18)
+        ☐ remove "on World GameObjects" collectables, make them available only via looting or trading... etc
+    Crafting:
+        ☐ base system
+        ☐ like shopping, ready lists and you just need to get required ingradients
+    Save/Load:
+        ☐ crafting recipes
 
-Player:
-    Movement:
-        ✔ fix speedup when jumping near edge @done(22-03-15 16:19)
-        
 Data Representation:
     LootObjectData:
         ☐ icon/modelPrefab
         ☐ UI
-    CollectableObjects:
 
-Done:
-    ✔ fix player movement with camera rotation @done(22-03-15 11:26)
-    ✔ fix push to wall issue @done(22-03-15 09:22)
-    ✔ add jump animation @done(22-03-15 10:54)
+Archive:
+  ✘ add OnInteractionStart  OnInteractionFinish @cancelled(22-03-17 16:07) @project(Systems.Interaction)
+  ✔ restart timer when out of interation trigger @done(22-03-17 16:07) @project(Systems.Interaction)
+  ✔ base system @done(22-03-15 16:18) @project(Systems.Looting)
+  ✔ base system @done(22-03-15 16:18) @project(Systems.Interaction)
+  ✔ base system @done(22-03-15 16:18) @project(Systems.Inventory)
+  ✔ fix speedup when jumping near edge @done(22-03-15 16:19) @project(Player.Movement)
+  ✔ fix player movement with camera rotation @done(22-03-15 11:26) @project(Done)
+  ✔ fix push to wall issue @done(22-03-15 09:22) @project(Done)
+  ✔ add jump animation @done(22-03-15 10:54) @project(Done)
 
 
 
-Interaction:
-    foreach interactable add a trigger and callback function
-    callback function should be uniqe to every type
-    add type
-    
+  craft ingradients[grass, ...other green things] -> potions [best to buy]
+  instant use items

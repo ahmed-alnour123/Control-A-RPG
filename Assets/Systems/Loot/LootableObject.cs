@@ -1,34 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[ExecuteInEditMode]
 [RequireComponent(typeof(InteractionEventRegisterer))]
 public class LootableObject : MonoBehaviour, IInteractable {
 
     public LootableObjectSO data;
+    public List<Collectable> collectables;
 
     private new string name;
-    private LootItemType itemType;
     private int animationId;
     private float timeToLoot;
-    private List<CollectableItem> collectables = new List<CollectableItem>();
+    private float lastTime;
+    private bool isCalled;
+    private bool isLooted;
+    private GameObject model;
+    private InteractionEventRegisterer eventRegisterer;
 
     void Start() {
         name = data.name;
-        itemType = data.itemType;
         animationId = data.animationId;
         timeToLoot = data.timeToLoot;
-        collectables = data.collectables;
-    }
+        model = data.model;
 
-    void Update() {
+        eventRegisterer = GetComponent<InteractionEventRegisterer>();
 
+        Instantiate(model, transform);
     }
 
     public void OnPlayerInteraction() {
-        if (timeToLoot > 0f) {
-            timeToLoot -= Time.deltaTime;
-            Debug.Log(timeToLoot);
-        } else {
+        if (Time.time - eventRegisterer.startTime >= timeToLoot && !isLooted) {
+            isLooted = true;
             Destroy(gameObject);
             collectables.ForEach(c => InventoryManager.instance.AddToInventory(c));
         }

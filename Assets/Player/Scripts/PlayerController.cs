@@ -57,10 +57,6 @@ public class PlayerController : MonoBehaviour {
             doJump = true;
         }
 
-        if (Input.GetKey(KeyCode.I)) {
-            InteractionEventManager.instance.InvokeEvent();
-        }
-
         if (!velocityReset && !isPressing) {
             rb.velocity = Vector3.up * rb.velocity.y; // <0, rb.velocity.y, 0>
             rb.angularVelocity = Vector3.zero;
