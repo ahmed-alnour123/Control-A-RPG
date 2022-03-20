@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftingManager : MonoBehaviour {
+public class TradingManager : MonoBehaviour {
 
-    List<CraftItem> recipes;
+    List<TradeItem> recipes;
 
     void Start() {
 

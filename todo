@@ -6,7 +6,9 @@ Systems:
     ☐ improve all systems
     Inventory:
         ☐ remove "on World GameObjects" collectables, make them available only via looting or trading... etc
-    Crafting:
+        ☐ make every GameObject have inventory
+        ☐ random count when collecting
+    Trading:
         ☐ base system
         ☐ like shopping, ready lists and you just need to get required ingradients
     Save/Load:
@@ -16,6 +18,9 @@ Data Representation:
     LootObjectData:
         ☐ icon/modelPrefab
         ☐ UI
+        
+Notes:
+    *When Using Inventory.RemoveItem make sure to check if the value is enough or not*
 
 Archive:
   ✘ add OnInteractionStart  OnInteractionFinish @cancelled(22-03-17 16:07) @project(Systems.Interaction)
