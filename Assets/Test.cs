@@ -38,4 +38,8 @@ public class Test : MonoBehaviour {
     void Update() {
 
     }
+
+    private void OnTriggerEnter(Collider other) {
+        TradingManager.instance.StartTrade(GetComponent<Inventory>(), false);
+    }
 }

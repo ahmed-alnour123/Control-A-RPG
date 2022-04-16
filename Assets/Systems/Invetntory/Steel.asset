@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Steel
   m_EditorClassIdentifier: 
   name: Black Iron
-  type: 1
-  icon: {fileID: 0}
+  type: 2
+  icon: {fileID: 21300000, guid: 6158d814337c95507a1b1f1b11d94be5, type: 3}

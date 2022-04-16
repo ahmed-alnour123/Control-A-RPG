@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1048298543216859873}
   - component: {fileID: 1048298543216859872}
   - component: {fileID: 1048298543216859887}
-  - component: {fileID: 1048298543216859874}
+  - component: {fileID: 6586561079128954864}
   m_Layer: 0
   m_Name: Lootable
   m_TagString: Untagged
@@ -49,6 +49,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   interactableType: 0
+  startTime: 0
 --- !u!114 &1048298543216859887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,23 +66,32 @@ MonoBehaviour:
   collectables:
   - item: {fileID: 11400000, guid: 837f84ecbea8298a1b635a5a3e2f2c67, type: 2}
     count: 2
+    price: 0
+    requiredLevel: 0
+    xp: 0
   - item: {fileID: 11400000, guid: 7e6f264e908be171c9655221f4dbc516, type: 2}
     count: 3
+    price: 0
+    requiredLevel: 0
+    xp: 0
   - item: {fileID: 11400000, guid: cf0835a94563c3c2a829c2bf3145bca7, type: 2}
     count: 5
---- !u!54 &1048298543216859874
-Rigidbody:
+    price: 0
+    requiredLevel: 0
+    xp: 0
+  requiredLevel: 0
+  xp: 0
+  requiredEnergy: 0
+--- !u!65 &6586561079128954864
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1048298543216859886}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
+  m_Size: {x: 3.0197, y: 8.563783, z: 2.6406922}
+  m_Center: {x: 0.06281161, y: 4.107487, z: 0}

@@ -1,28 +1,73 @@
 General:
     ☐ improve ScriptableObjects
-UI:
-    ☐ create UI template
+    ☐ make data assignments in Awake()
+    ☐ watch out from Dictionary's KeyNotFoundException
+    ☐ Tweak the values to get the best results (gained xp, restored energy, wood price...)
+    ☐ remove player jump
+
+Game Manager:
+    ☐ make it has all the stats of the game (pausing, trading, winnig, losing, placing, sleeping)
 Systems:
     ☐ improve all systems
+    Interaction:
+        ☐ add onPlayerInteractionStart onPlayerInteractEnd !!!!!!!!!!!!!
+        ☐ fix calculating time in touch interactables
     Inventory:
-        ☐ remove "on World GameObjects" collectables, make them available only via looting or trading... etc
-        ☐ make every GameObject have inventory
-        ☐ random count when collecting
-    Trading:
-        ☐ base system
-        ☐ like shopping, ready lists and you just need to get required ingradients
+        ☐ add random count when collecting
+        ☐ add RandomGenerate function and use it at startup for merchants
     Save/Load:
-        ☐ crafting recipes
-
+        ☐ basic system
+        ☐ remember to update variables that only changes with events
+    Hunting:
+        ☐ basic system
+    Health & Energy:
+        ☐ add beds
+    XP:
+        ☐ add time and day/night system
+    Grid & Placing:
+        ☐ move screen with mouse when placing
+        ☐ draggable mutliple objects (plants, fence... etc)
+UI:
+    ☐ placing button (it's ugly and not informative)
+    ☐ add level up UI messagebox
+    ☐ add inventory
 Data Representation:
     LootObjectData:
         ☐ icon/modelPrefab
         ☐ UI
-        
 Notes:
-    *When Using Inventory.RemoveItem make sure to check if the value is enough or not*
+    - Interactables depends on parentObject only the trigger and everything should be there
+        
+how to add an interactable?
+    1- requireComponent(EventRegisterer)
+    2- using IInteractable
+    3- 
 
 Archive:
+  ✔ public bool isTrading, so no 2 trades happen at same time @done(22-04-09 00:16) @project(Game Manager)
+  ✔ public bool isPlacing / placing Mode @done(22-04-14 11:28) @project(Game Manager)
+  ✔ fix collection problems @done(22-04-10 00:08) @project(Systems.Interaction)
+  ✘ change the way you reference player inventory @cancelled(22-04-10 00:08) @project(Systems.Inventory)
+  ✔ basic system @done(22-04-09 00:14) @project(Systems.Health & Energy)
+  ✔ energy drop by time @done(22-04-09 21:22) @project(Systems.Health & Energy)
+  ✔ add sleeping to restore energy @done(22-04-10 00:09) @project(Systems.Health & Energy)
+  ✔ basic system @done(22-04-08 10:53) @project(Systems.XP)
+  ✔ can't buy items except when you're at certain level @done(22-04-08 10:53) @project(Systems.XP)
+  ✔ add the UI for it @done(22-04-14 11:29) @project(Systems.XP)
+  ✔ use UI and gameManager to turn it on/off @done(22-04-14 11:29) @project(Systems.Grid & Placing)
+  ✔ change font and apperance @done(22-04-14 11:29) @project(UI)
+  ✔ coin icon in trading canvas @done(22-04-14 11:29) @project(UI)
+  ✔ placing canvas (and fix the disable problem) @done(22-04-14 11:29) @project(UI)
+  ✔ create UI template @done(22-03-30 01:33) @project(UI)
+  ✔ add player coins Text @done(22-03-30 01:33) @project(UI)
+  ✔ player inventory when shopping (added in parenthesis in UI) @done(22-03-30 01:34) @project(UI)
+  ✔ to get out of the infinity loop, if you buy an item you can't sell it again in same trading session @done(22-03-30 01:32) @project(Systems)
+  ✔ check requirements if they have the same reference for objects @done(22-03-30 01:32) @project(Systems.Inventory)
+  ✔ base system @done(22-03-30 01:32) @project(Systems.Trading)
+  ✔ like shopping, ready lists and you just need to get required ingradients @done(22-03-30 01:32) @project(Systems.Trading)
+  ✔ close and open shop UI @done(22-03-30 01:32) @project(Systems.Trading)
+  ✔ remove "on World GameObjects" collectables, make them available only via looting or trading... etc @done(22-03-20 12:58) @project(Systems.Inventory)
+  ✔ make every GameObject have inventory @done(22-03-20 12:58) @project(Systems.Inventory)
   ✘ add OnInteractionStart  OnInteractionFinish @cancelled(22-03-17 16:07) @project(Systems.Interaction)
   ✔ restart timer when out of interation trigger @done(22-03-17 16:07) @project(Systems.Interaction)
   ✔ base system @done(22-03-15 16:18) @project(Systems.Looting)
@@ -32,8 +77,3 @@ Archive:
   ✔ fix player movement with camera rotation @done(22-03-15 11:26) @project(Done)
   ✔ fix push to wall issue @done(22-03-15 09:22) @project(Done)
   ✔ add jump animation @done(22-03-15 10:54) @project(Done)
-
-
-
-  craft ingradients[grass, ...other green things] -> potions [best to buy]
-  instant use items

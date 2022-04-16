@@ -1,30 +1,44 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
 
     /// <summary>this is for assigning data in inspector</summary>
-    public List<InventoryItem> startItems;
+    public List<TradeItem> startItems;
 
-    public Dictionary<string, InventoryItem> items = new Dictionary<string, InventoryItem>();
+    public Dictionary<string, TradeItem> items = new Dictionary<string, TradeItem>();
 
-    private void Start() {
-        foreach (var item in startItems) {
-            AddItem(item, item.Count);
-        };
+    private PlayerXP playerXP;
+
+    public int Gold {
+        get {
+            var goldName = GameManager.instance.goldInventoryItem.name;
+            return items.ContainsKey(goldName) ? items[goldName].count : 0;
+        }
     }
 
-    public void AddItem(InventoryItem item, int count) {
+    private void Awake() {
+        foreach (var item in startItems) {
+            AddItem(item, item.count);
+        }
+    }
+
+    private void Start() {
+        playerXP = FindObjectOfType<PlayerXP>();
+    }
+
+    public void AddItem(TradeItem item, int count) {
         if (!ContainsItem(item)) {
             var newItem = item.Copy();
-            newItem.Count = count;
-            items.Add(item.name, newItem);
+            newItem.count = count;
+            items.Add(newItem.name, newItem);
         } else {
             SetCount(item, count);
         }
     }
 
-    public void RemoveItem(InventoryItem item, int count) {
+    public void RemoveItem(TradeItem item, int count) {
         SetCount(item, -count);
 
         if (GetCount(item) <= 0) {
@@ -35,20 +49,44 @@ public class Inventory : MonoBehaviour {
     /// <summary>
     /// Note: it add or decrases but doesn't set count
     /// </summary>
-    public void SetCount(InventoryItem item, int count) {
-        items[item.name].Count += count;
+    public void SetCount(TradeItem item, int count) {
+        if (!ContainsItem(item)) {
+            Debug.LogError($"Can't find {item.name} in {name}");
+            PrintInventory();
+        }
+        items[item.name].count += count;
     }
 
-    public int GetCount(InventoryItem item) {
-        return GetItem(item).Count;
+    public int GetCount(TradeItem item) {
+        return GetItem(item).count;
     }
 
-    private InventoryItem GetItem(InventoryItem item) {
+    /// <summary>return item count in the inventory or empty string if it doesn't exist</summary>
+    public string TryGetCountStr(TradeItem item) {
+        if (!ContainsItem(item)) return "";
+        return GetItem(item).count + "";
+    }
+
+    private TradeItem GetItem(TradeItem item) {
         return items[item.name];
     }
 
-    public bool ContainsItem(InventoryItem item) {
+    public bool ContainsItem(TradeItem item) {
         return items.ContainsKey(item.name);
+    }
+
+    public bool CanBuy(TradeItem item, Inventory other) {
+        var theItem = GetItem(item);
+        var canbuy = true;
+        foreach (var reqItem in theItem.requirements) {
+            // I'm using InventoryItem's type casting here for req
+            TradeItem req = reqItem;
+            if (!(other.ContainsItem(req) && other.GetItem(req).count >= req.count)) {
+                canbuy = false;
+                break;
+            }
+        }
+        return canbuy && playerXP.level >= item.requiredLevel;
     }
 
     public void PrintInventory() {

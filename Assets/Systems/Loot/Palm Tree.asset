@@ -16,4 +16,4 @@ MonoBehaviour:
   animationId: 1
   timeToLoot: 2
   regenratable: 0
-  model: {fileID: 9173564148454636821, guid: f1aad4e8da5188331a7c1367f8a5a80d, type: 3}
+  model: {fileID: 1327385724211766, guid: dc00aab85b301f242896a77c4b442ec0, type: 3}

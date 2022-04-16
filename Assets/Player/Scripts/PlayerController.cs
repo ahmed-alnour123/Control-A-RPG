@@ -29,8 +29,10 @@ public class PlayerController : MonoBehaviour {
     private Transform cam;
     private Quaternion newRot = Quaternion.identity;
     private Transform groundSensor;
+    private GameManager gameManager;
 
     void Start() {
+        gameManager = GameManager.instance;
         rb = GetComponent<Rigidbody>();
         cam = Camera.main.transform;
         groundSensor = transform.Find("sensors/ground");
@@ -38,6 +40,14 @@ public class PlayerController : MonoBehaviour {
 
 
     void Update() {
+        if (gameManager?.isTrading ?? false) { // FIX: debug
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            isPressing = false;
+            acceleration = 0;
+            return;
+        }
+
         // assign data to variables
         h = Input.GetAxisRaw("Horizontal");
         v = Input.GetAxisRaw("Vertical");

@@ -7,6 +7,9 @@ public class LootableObject : MonoBehaviour, IInteractable {
 
     public LootableObjectSO data;
     public List<InventoryItem> collectables;
+    public int requiredLevel;
+    public int xp;
+    public int requiredEnergy;
 
     private new string name;
     private int animationId;
@@ -17,6 +20,7 @@ public class LootableObject : MonoBehaviour, IInteractable {
     private GameObject model;
     private InteractionEventRegisterer eventRegisterer;
     private Inventory playerInventory;
+    private PlayerXP playerXP;
 
     void Start() {
         name = data.name;
@@ -26,15 +30,21 @@ public class LootableObject : MonoBehaviour, IInteractable {
 
         eventRegisterer = GetComponent<InteractionEventRegisterer>();
         playerInventory = FindObjectOfType<PlayerInteraction>().GetComponent<Inventory>();
+        playerXP = FindObjectOfType<PlayerXP>();
 
-        Instantiate(model, transform);
+        if (transform.childCount == 0) {
+            Instantiate(model, transform);
+        }
     }
 
     public void OnPlayerInteraction() {
+        if (playerXP.level < requiredLevel || playerXP.currentEnergy < requiredEnergy) return; // TODO: show message to player
         if (Time.time - eventRegisterer.startTime >= timeToLoot && !isLooted) {
             isLooted = true;
             Destroy(gameObject);
-            collectables.ForEach(c => playerInventory.AddItem(c, c.Count));
+            playerXP.AddXP(xp);
+            playerXP.ChangeEnergy(-requiredEnergy);
+            collectables.ForEach(c => playerInventory.AddItem(c, c.count));
         }
     }
 }
