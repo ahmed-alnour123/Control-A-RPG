@@ -13,11 +13,6 @@ public class Tradable : MonoBehaviour, IInteractable {
         inventory = GetComponent<Inventory>();
     }
 
-
-    void Update() {
-
-    }
-
     public void OnPlayerInteraction() {
         if (gameManager.isTrading) return;
         tradingManager.StartTrade(inventory, false);

@@ -33,12 +33,6 @@ public class DraggingManager : MonoBehaviour {
     }
 
     void Update() {
-        // // I don't know what is this, so I won't delete it
-        // if (EventSystem.current.IsPointerOverGameObject()) {
-        //     isDragging = false;
-        //     return;
-        // }
-
         if (placingManager.isPlacing) return;
 
         if (Input.GetMouseButtonDown(0)) {
@@ -70,7 +64,7 @@ public class DraggingManager : MonoBehaviour {
     void HandleSelectedObjects(InteractionType interactionType) {
         dragSize.Set(Mathf.Abs(dragSize.x / 2), 1, Mathf.Abs(dragSize.z / 2));
         RaycastHit[] hits = Physics.BoxCastAll(dragCenter, dragSize, Vector3.up, Quaternion.identity, 0);
-
+        Debug.LogWarning(hits.Length);
         switch (interactionType) {
             case InteractionType.Plant:
                 for (int i = -((int)dragSize.x); i < dragSize.x; i++) {
@@ -81,7 +75,7 @@ public class DraggingManager : MonoBehaviour {
                 break;
             case InteractionType.Destroy:
                 foreach (RaycastHit hit in hits) {
-                    if (!hit.collider.CompareTag("Destroy")) continue;
+                    if (hit.collider.gameObject.layer != LayerMask.NameToLayer("Level")) continue;
                     Destroy(hit.collider.transform.parent.gameObject);
                 }
                 break;

@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Grid : MonoBehaviour {
 
-    public float size;
+    public int size;
 
     public Vector3 GetPoint(Vector3 position) {
         if (size == 0) size = 1;

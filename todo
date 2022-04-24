@@ -1,20 +1,39 @@
+Deleting Placables:
+    ☐ find a better way to delete
+Current Tasks:
+    ✔ make a UI for looting @done(22-04-22 14:02)
+    ✔ make rock (for mining) @done(22-04-22 22:09)
+    ✔ make the level has an effect in the game (houses, planting, trading) @done(22-04-24 13:53)
+    ✔ seperate buildings and plants, in placing @done(22-04-24 13:53)
+    ☐ health reduce and animals (that dies with a trap)
+    ☐ change player avatar
+    ☐ add delete button, and return the building value (reduce it a bit)
+
 General:
     ☐ improve ScriptableObjects
     ☐ make data assignments in Awake()
     ☐ watch out from Dictionary's KeyNotFoundException
     ☐ Tweak the values to get the best results (gained xp, restored energy, wood price...)
     ☐ remove player jump
+    ☐ add plants prefab variation
+    ☐ add customizable clothes to player (hats, glasses...)
+    ☐ change in game UI for messages (e.g. required level not reached... etc)
 
 Game Manager:
     ☐ make it has all the stats of the game (pausing, trading, winnig, losing, placing, sleeping)
 Systems:
     ☐ improve all systems
+    Looting:
+        ☐ random lootable objects generator
     Interaction:
-        ☐ add onPlayerInteractionStart onPlayerInteractEnd !!!!!!!!!!!!!
-        ☐ fix calculating time in touch interactables
+        ☐ add onPlayerInteractionStart onPlayerInteractEnd !! ??
+        ☐ fix calculating time in touch interactables ??
+        ☐ you can interact with multiple objects at once, should I remove it?
     Inventory:
         ☐ add random count when collecting
         ☐ add RandomGenerate function and use it at startup for merchants
+        ☐ use invnetory items
+        ☐ inventory capacity
     Save/Load:
         ☐ basic system
         ☐ remember to update variables that only changes with events
@@ -27,10 +46,20 @@ Systems:
     Grid & Placing:
         ☐ move screen with mouse when placing
         ☐ draggable mutliple objects (plants, fence... etc)
+        ☐ can't drag and place objects in stright line
+        ☐ add catagory field
+        ☐ add fence
+        ☐ hide placing button when can't place
+        ☐ dragging and MouseButtonUp on UI object doesn't delete dragSquare
+        ☐ dragging starts even if you are over UI object
+        ☐ change buildings size in placingManager (they are the same size although they differ)
 UI:
     ☐ placing button (it's ugly and not informative)
     ☐ add level up UI messagebox
-    ☐ add inventory
+    ✔ add inventory @done(22-04-22 14:49)
+    ☐ inventory selected last used object
+    ☐ problem when showing PlacingCanvas & inventory at the same time
+    ☐ canvas scrolling not working
 Data Representation:
     LootObjectData:
         ☐ icon/modelPrefab

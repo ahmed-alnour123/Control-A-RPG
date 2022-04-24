@@ -63,9 +63,9 @@ public class InteractionEventManager : MonoBehaviour {
 }
 
 public enum InteractableType {
-    /// <summary>interact by player entering area of effect</summary>
-    Field,
     /// <summary>interact by player touching it</summary>
-    Touch
+    Touch,
+    /// <summary>interact by player entering area of effect</summary>
+    Field
 }
 

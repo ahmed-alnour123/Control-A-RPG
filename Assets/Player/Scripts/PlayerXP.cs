@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
@@ -29,11 +30,19 @@ public class PlayerXP : MonoBehaviour {
     public float energyProgress { get { return (float)currentEnergy / maxEnergy; } }
 
     void Start() {
-        currentHealth = maxHealth; // TODO: get it from saved data
+        // currentHealth = maxHealth; // TODO: get it from saved data
+        currentHealth = 10; // TODO: get it from saved data
         currentEnergy = maxEnergy; // TODO: get it from saved data
         lastLevel = level;
         // no need for it, but I'll leave it just in case
         // StartCoroutine(DropEnergy());
+    }
+
+    public Action testFunc;
+    void Update() {
+        if (Input.GetKeyDown(KeyCode.O)) {
+            testFunc();
+        }
     }
 
     // XP
@@ -88,7 +97,7 @@ public class PlayerXP : MonoBehaviour {
         throw new System.NotImplementedException();
     }
 
-    [System.Obsolete("Don't Use this method, it's here just in case")]
+    [System.Obsolete("Don't Use this method, it's here just in case we need it")]
     IEnumerator DropEnergy() {
         while (true) {
             ChangeEnergy(-energyDropAmount);

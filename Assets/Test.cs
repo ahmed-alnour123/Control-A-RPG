@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Test : MonoBehaviour {
@@ -6,6 +7,20 @@ public class Test : MonoBehaviour {
     public Inventory inventory1;
     public Inventory inventory2;
     public InventoryItem collectable;
+
+    private void Start() {
+        var nums = new List<int>();
+        var inventories = FindObjectsOfType<Inventory>();
+        inventories.ToList().ForEach(i => {
+            if (i.id != 0) return;
+            var rand = Random.Range(0, 10000);
+            while (nums.Contains(rand)) {
+                rand = Random.Range(0, 10000);
+            }
+            nums.Add(rand);
+            i.id = rand;
+        });
+    }
 
     void SStart() {
         Debug.Log("Starting");

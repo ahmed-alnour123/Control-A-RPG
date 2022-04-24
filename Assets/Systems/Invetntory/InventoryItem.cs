@@ -1,22 +1,25 @@
 using System.Collections.Generic;
-using System.Linq;
 
 
 [System.Serializable]
 public class InventoryItem {
     public InventoryItemSO item;
     public int count;
-    public int price;
     public int requiredLevel;
     public int xp;
+    public int effectAmount;
+
 
     public string name { get { return item.name; } }
+
+    private int price { get { return item.price; } }
 
     public InventoryItem Copy() {
         return new InventoryItem {
             item = this.item,
             count = this.count,
-            price = this.price,
+            // price = this.price,
+            effectAmount = this.effectAmount,
             requiredLevel = this.requiredLevel,
             xp = this.xp
         };
@@ -32,9 +35,20 @@ public class InventoryItem {
             count = inventoryItem.count,
             requiredLevel = inventoryItem.requiredLevel,
             xp = inventoryItem.xp,
+            effectAmount = inventoryItem.effectAmount,
             requirements = reqList
         };
     }
 }
 
-public enum CollectableType { Gold, Wood, Steel, HealthPotion, StaminaPotion }
+public enum CollectableType {
+    None,
+    Gold,
+    HealthPotion,
+    EnergyPotion,
+    Food,
+    Weapon,
+    Building,
+    Plant,
+    Trap
+}

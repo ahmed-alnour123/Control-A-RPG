@@ -8,5 +8,6 @@ public class InventoryItemSO : ScriptableObject {
     // public string description;
     public CollectableType type;
     public Sprite icon;
+    public int price;
     // public GameObject model;
 }

@@ -1,8 +1,12 @@
 using System.Collections.Generic;
-using System.Linq;
+using System.ComponentModel;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour {
+
+    [HideInInspector]
+    public int id;
+    public bool forPlacables;
 
     /// <summary>this is for assigning data in inspector</summary>
     public List<TradeItem> startItems;

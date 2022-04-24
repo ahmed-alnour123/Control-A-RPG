@@ -1,3 +1,6 @@
+using System.ComponentModel;
+using JetBrains.Annotations;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
@@ -11,6 +14,8 @@ public class GameManager : MonoBehaviour {
     public GameObject tradingCanvas;
     public GameObject placingCanvas;
     public GameObject InGameCanvas;
+    public GameObject inventoryButton;
+    public GameObject deleteButton;
 
     // Game Status variables
     [HideInInspector]
@@ -19,6 +24,8 @@ public class GameManager : MonoBehaviour {
     public bool isSleeping { get; private set; }
     [HideInInspector]
     public bool isPlacing { get; private set; }
+    [HideInInspector]
+    public bool isDeleting { get; private set; }
 
     private PlacingManager placingManager;
     private PlayerXP playerXP;
@@ -30,10 +37,37 @@ public class GameManager : MonoBehaviour {
     }
 
     public void SetPlacingMode(bool isPlacing) {
+        if (!isDeleting && isPlacing && !(placingManager.buildingsListCount > 0 || placingManager.plantsListCount > 0)) return;
         this.isPlacing = isPlacing;
+        inventoryButton.SetActive(!isPlacing);
         placingManagerGamaObject.SetActive(isPlacing);
         placingCanvas.SetActive(isPlacing);
         placingManager.ChangeButtonSprite(isPlacing);
+        placingManager.RefreshButtons();
+        placingManager.buildingsUIButton.SetActive(false);
+        placingManager.plantsUIButton.SetActive(false);
+        placingManager.buildingsUIButtonsParent.parent.gameObject.SetActive(false);
+        placingManager.plantsUIButtonsParent.parent.gameObject.SetActive(false);
+        if (isPlacing) {
+            if (placingManager.buildingsListCount > 0)
+                placingManager.buildingsUIButton.SetActive(true);
+            if (placingManager.plantsListCount > 0)
+                placingManager.plantsUIButton.SetActive(true);
+        }
+    }
+
+    public void SetDeleting(bool isDeleting) {
+        this.isDeleting = isDeleting;
+        // change mouse shape
+        if (isDeleting && isPlacing) {
+            SetPlacingMode(false);
+        }
+    }
+
+    public void ToggleDeleting() {
+        isDeleting = !isDeleting;
+        deleteButton.SetActive(!isDeleting);
+        SetDeleting(isDeleting);
     }
 
     void Awake() {

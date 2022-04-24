@@ -10,6 +10,7 @@ public class TradingManager : MonoBehaviour {
     private GameManager gameManager;
     private TradingUIManager tradingUIManager;
     private PlayerXP playerXP;
+    private PlacingManager placingManager;
 
     private void Awake() {
         instance = this;
@@ -18,8 +19,9 @@ public class TradingManager : MonoBehaviour {
     private void Start() {
         gameManager = GameManager.instance;
         tradingUIManager = TradingUIManager.instance;
-        playerInventory = FindObjectOfType<PlayerInteraction>().GetComponent<Inventory>();
         playerXP = FindObjectOfType<PlayerXP>();
+        playerInventory = playerXP.GetComponent<Inventory>();
+        placingManager = FindObjectOfType<PlacingManager>();
     }
 
     private void Update() {
@@ -46,15 +48,22 @@ public class TradingManager : MonoBehaviour {
     }
 
     public void Buy(TradeItem item) {
+
+
         foreach (var reqItem in item.requirements) {
             TradeItem req = reqItem;
             playerInventory.RemoveItem(req, req.count);
-            otherInventory.AddItem(req, req.count);
+            if (!otherInventory.forPlacables)
+                otherInventory.AddItem(req, req.count);
         }
-        playerInventory.AddItem(item, 1);
+        if (!otherInventory.forPlacables)
+            playerInventory.AddItem(item, 1);
         otherInventory.RemoveItem(item, 1);
         Debug.Log(item.xp + " " + item.name);
         playerXP.AddXP(item.xp);
+        if (otherInventory.forPlacables) {
+            placingManager.AddPlacable(item);
+        }
         // UpdateUI()
         Debug.Log("Buying Done");
         Print();

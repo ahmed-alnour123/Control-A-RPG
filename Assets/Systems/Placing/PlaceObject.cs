@@ -5,10 +5,13 @@ using UnityEngine;
 public class PlaceObject {
     public int width;
     public int height;
+    /// <summary> can the user drag and place it? </summary>
+    public bool isContinous;
 
     [Space()]
     public GameObject prefab;
     public Sprite icon;
+    public TradeItem tradeItem;
 
     [HideInInspector]
     public Transform transform { get { return prefab.transform; } }
@@ -24,6 +27,7 @@ public class PlaceObject {
                 _visual.name = "Visual " + _visual.name;
                 _visual.GetComponents<Collider>().ToList().ForEach(c => c.enabled = false);
                 _visual.GetComponentsInChildren<Collider>().ToList().ForEach(c => c.enabled = false);
+                GameObject.Destroy(_visual.GetComponent<PlantGrow>());
                 // _visual.GetComponent<Renderer>().material.color = Color.blue * 0.5f;
                 // TODO: change _visual material
                 _visual.SetActive(false);
@@ -34,4 +38,3 @@ public class PlaceObject {
 }
 
 public enum FacingDirection { Horizontal, Vertical }
-

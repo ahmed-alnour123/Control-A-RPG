@@ -7,6 +7,7 @@ public class InteractionEventRegisterer : MonoBehaviour {
     private UnityEvent Event;
 
     public InteractableType interactableType;
+
     [HideInInspector]
     public float startTime;
 
